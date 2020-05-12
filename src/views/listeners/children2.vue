@@ -5,7 +5,7 @@
     <p>age: {{ age }}</p>
     <p>childCom2: {{ $attrs }}</p>
   </div>
-</template> 
+</template>  
 <script>
 export default {
   data() {

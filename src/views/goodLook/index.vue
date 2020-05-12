@@ -50,6 +50,20 @@
         </el-table>
       </el-dialog>
     </div>
+    <div v-yy-drag-dialog>
+      <div class="drags"> 
+          <div class="drags-head"></div>
+          按住头部可以拽。。
+      </div> 
+    </div>
+
+    <div style="margin-top:20px;">
+      <div>看一下子组件中的input，在父组件传值的操作，新视角 -- filename == {{filename}}</div>
+      <inp v-model="filename" />
+      <p>组件内部使用了 computed 计算属性（get和set），类似于 input 事件，即每次输入都触发，但这里用计算属性代替了，子组件，定义了一个 props，实际上父组件并未传递相关变量</p>
+      <p>computed里面的变量是可以从新赋值的，通过自带的set。并且，当get 时，return 的变量，相当于对其赋值了，并且里面props 定义的 value，换为 data定义一个value是不对的，可能是由于，在计算属性的，set里return this.value时，他相当与绑定了其值在 value上，而data里的value不行</p>
+    </div>
+
   </div>
 </template>
 <script>
@@ -57,9 +71,12 @@ import waves from './waves/index.js' // 水波纹指令
 import panThumb from './panThumb/index' 
 import backToTop from './backToTop/index'
 import elDragDialog from './dragDialog/index' // base on element-ui
+import yyDragDialog from './copyDrag/index'
+import inp from './inp/index'
 export default { 
   data() {
     return {
+      filename:'',
       myBackToTopStyle: {
         right: '50px',
         bottom: '50px',
@@ -95,11 +112,13 @@ export default {
   },
   directives: {
     waves,
-    elDragDialog
+    elDragDialog,
+    yyDragDialog,
   },
   components: {
     panThumb,
-    backToTop
+    backToTop,
+    inp
   }
 }
 </script>
@@ -174,6 +193,18 @@ export default {
   }
   .placeholder-container div {
      margin: 10px;
+  }
+  .drags {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: aquamarine;
+    left: 300px;
+  }
+  .drags>.drags-head {
+      width: 100%;
+      height: 40px;
+      background-color: #ff1a75;  
   }
 </style>
 

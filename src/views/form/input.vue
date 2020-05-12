@@ -1,7 +1,7 @@
 <template>
   <input
       type="text"
-      :value="currentValue"
+      :value="currentValue" 
       @input="handleInput"
       @blur="handleBlur"
   />

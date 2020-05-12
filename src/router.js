@@ -245,5 +245,54 @@ export default new Router({
       path: '/useElement',
       component: () => import('./views/canvas/useElement.vue')
     },
+    {
+      path: '/baseBorder',
+      component: () => import('./views/baseBorder/index.vue')
+    },
+    {
+      path: '/recursion/:id',
+      component: () => import('./views/recursion/index.vue'),
+      props: true    // props 解耦，组件内可通过 props 属性接受 到 所传的参数
+    },
+    {
+      path: '/operation',
+      component: () => import('./views/operation/index.vue')
+    },
+    {
+      path: '/classc',
+      component: () => import('./views/classc/index.vue') 
+    },
+    {
+      path: '/vuePlugins',
+      component: () => import('./views/vuePlugins/index.vue') 
+    },
+    // { path: '*', redirect: '/404', hidden: true }  // 即使在浏览器的路由输入框中，输入了错误的路由列表未注册的路由，就会跳转至 404 页面
   ]
 })
+
+// 在未登录时 路由始终定向到 登录页面； 
+// router.beforeEach((to, from, next) => {
+//   const token = Cookies.get('token')
+//   console.log('cookie key值为token的值====',token)
+//   console.log('to===',to)
+//   console.log('from===',from)
+//   if (token) { // 如果token不为空字符串或者undefined，说明登录了
+//     console.log('有token的----===',token) 
+//     if (to.path === '/about') {      // 如果要跳转的页面是 登录页
+//         // 如果登录了然后访问login页，不做跳转，从哪来回哪去
+//         next(from.path)
+
+//     } else {
+//         // 否则顺利跳转
+//         next()
+//     }
+//   } else { // 否则是没登录
+//     if (to.path === '/about') {
+//         // 如果没登录而且乖乖的到登录页去，轻松放行
+//         next()
+//     } else {
+//         // 如果没登录还想去登录后的页面，打回登录页
+//         next('/about')
+//     }
+//   }
+// })

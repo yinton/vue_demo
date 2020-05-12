@@ -36,7 +36,7 @@ export default {
    },
    mounted() {
       console.log('调用混入内容')
-      console.log(this.userInfo) //
+      console.log(this.userInfo)  // 混入文件的字段内容
    },
 }
 </script> 

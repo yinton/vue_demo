@@ -2,9 +2,9 @@
 	<div>
 		<div class="z-padding-all-10px z-bold-font z-color-f">可切换不同型号手机，查看显示差异（测试原生媒体查询的基本运用，根据宽度加载不同css后的体现）</div>
 		<div class="div1">media媒体查询的操作</div>
-    <div>
-    	<div class="z-padding-v-15px z-font-18 z-color-bl box z-table">演示移动端实现 1px 边框，原生媒体查询和stylus实现</div>
-    </div>
+		<div>
+			<div class="z-padding-v-15px z-font-18 z-color-bl box z-table">演示移动端实现 1px 边框，原生媒体查询和stylus实现</div>
+		</div>
 	</div>
 </template>  
 <style scoped>  

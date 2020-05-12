@@ -12,16 +12,16 @@
 	export default {
   name: 'componentD',
   components:{alss},
-		data(){ 
-			return {
-            
-			}
-		},
-		methods:{
-      dataPrting(){
-      	console.log('被调用了的子组件的方法');
-      }  
-		},
+	data(){ 
+		return {
+		
+		}
+	},
+	methods:{
+		dataPrting(){
+			console.log('被调用了的子组件的方法');
+		}  
+	},
     mounted () {
      const comA = findComponentUpward(this, 'componentC');
       if (comA) {  //加了一层 if (comA) 来判断是否找到了组件 A，如果没有指定的组件而调用的话，是会报错的。

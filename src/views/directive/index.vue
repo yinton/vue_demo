@@ -1,23 +1,35 @@
 <template>
-<div class="test">
-
-  <div v-if="bol" class="inp">
-    <input v-focus type="text" class="box-inp z-padding-v-10px">
+  <div class="test">
+    <div v-if="bol" class="inp">
+      <input v-focus type="text" class="box-inp z-padding-v-10px">
+    </div>
+    <div class="directive" @click="directivec">点击显示触发获得焦点</div> 
+    <Loading></Loading>  
+    {{syncTxt}} -- 需要响应的内容
+    <syncx :value.sync="syncTxt" />
+    <nativex @click.native.stop="jik()" />
   </div>
-  <div class="directive" @click="directivec">点击显示触发获得焦点</div> 
-  <Loading></Loading>  
-</div>
 </template>
 <script>
+  const syncx = () => import('./syncCon')
+  const nativex = () => import('./natives')
 	export default {
+    components:{
+      syncx,
+      nativex
+    },
     data() {
       return {
-         bol: false
+         bol: false,
+         syncTxt:'sync修饰符'
       }
     },
     methods:{
       directivec() {
         this.bol = !this.bol;
+      },
+      jik(){
+        console.log(234)
       }
     },
     directives: {     // inserted 钩子，当元素插入时调用,局部指令

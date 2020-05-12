@@ -11,7 +11,7 @@
       通信provide/inject
     </div> 
     <div class="z-width-20-percent z-bg-fd4 box" @click="$router.push('/radioBroadcast')">
-      组件通信派发与广播 （事件相关触发）
+      组件通信派发与广播 （事件相关触发）相当于可以调用孙组件或者更下层的组件中的方法函数
     </div>   
     <div class="z-width-20-percent z-bg-80d box" @click="$router.push('/findComponents')">
       组件通信之找到任意组件实例 （非事件相关即可触发）
@@ -70,7 +70,7 @@
        移植 jqury 运动函数
     </div>    
     <div class="z-width-20-percent z-bg-80d box" @click="$router.push('/directive')"> 
-       Vue -- 指令 、、
+       Vue -- 指令 、、 包括.sync .native 以及其他vue 修饰符使用
     </div>   
     <div class="z-width-20-percent z-bg-ff9 box" @click="$router.push('/listeners')"> 
        $attrs与 $listeners
@@ -79,7 +79,7 @@
        全局组件， / 插件  /  以及指令  
     </div> 
     <div class="z-width-20-percent z-bg-fd4 box" @click="$router.push('/goodlook')"> 
-       移植的漂亮按钮
+       移植的漂亮按钮以及 element——admin 中移植的 各种指令组件演示 (主要吸收作者的各种骚操作写法)
     </div>   
     <div class="z-width-20-percent z-bg-ff8 box" @click="$router.push('/echarts')"> 
        echarts
@@ -88,7 +88,7 @@
        v-for 和v-if 在同一个 div 
     </div>      
     <div class="z-width-20-percent z-bg-80d box" @click="$router.push('/draggable')"> 
-       vue-draggable
+       vue-draggable \ sync 修饰符 以及是否能与 $attrs、$listeners配合使用，最后再测下 $ref在跨组件时的表现
     </div>     
     <div class="z-width-20-percent z-bg-ff9 box" @click="$router.push('/canvas')"> 
        canvas
@@ -96,8 +96,23 @@
     <div class="z-width-20-percent z-bg-ff9 box" @click="$router.push('/baiduMap')">
        baiduMap
     </div>
+    <div class="z-width-20-percent z-bg-fd4 box" @click="$router.push('/baseBorder')">
+       baseBorder 自定义border内容框 
+    </div>
+    <div class="z-width-20-percent z-bg-ff8 box" @click="$router.push('/recursion/123')">
+        recursion 递归函数 一个 顺便 params 传参的操作，在 router 文件开启 props 为true 
+    </div>
+    <div class="z-width-20-percent z-bg-b3b box" @click="$router.push({path:'/operation',query:{id:1}})">   
+       vue operation （vue 的一些骚操作）
+    </div>
+    <div class="z-width-20-percent z-bg-80d box" @click="$router.push({path:'/classc'})">    
+       export \ export default  与  Class ( 类 ) 
+    </div>
+    <div class="z-width-20-percent z-bg-80d box" @click="$router.push({path:'/vuePlugins'})">    
+       vue 一众插件演示
+    </div>
   </div>
-   <div>{{fullName}}</div>       
+  <div>{{fullName}}</div>       
   <div @click="changes" class="z-margin-left-20px">点击改变computed 中的fullName</div>  
  </div> 
 </template>

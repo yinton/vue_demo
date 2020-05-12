@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div> 
     <label v-if="label" :class="{ 'i-form-item-label-required': isRequired }">{{ label }}</label>
     <div>
       <slot></slot>
@@ -31,7 +31,7 @@ export default {
     }
   },
   computed: {
-      // 从 Form 的 model 中动态得到当前表单组件的数据
+      // 从 Form 的 model 中动态得到当前表单组件的数据   使用inject，调用到了 父组件中的  绑定的表单的 v-model 的formValidate的name值
       fieldValue () {
           return this.form.model[this.prop];
       }
@@ -118,6 +118,7 @@ export default {
     color: red;
 }
 .i-form-item-message {
-    color: red;
+    color: #ccc;
+    background: aquamarine;
 }
 </style>

@@ -24,7 +24,8 @@
    top:40px; /* 阈值 */
    padding:20px 0;
    background-color:rgba(255, 153, 102, .7);
-   margin-top:30px;
+	 margin-top:30px;
+	 height:300px;
  }
  p{height:60vh;background-color: #eee;}
  h1{height:150px;border-bottom:1px solid red;text-align:center;}

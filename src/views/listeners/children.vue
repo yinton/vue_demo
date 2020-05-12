@@ -9,7 +9,7 @@
   </div> 
 </template>
 <script>
-const childCom2 = () => import("./children2.vue");
+const childCom2 = () => import("./children2.vue"); 
 export default {   
   data() {
     return {

@@ -4,6 +4,10 @@
       <span slot="test">span</span>
       <span>按钮</span>
     </i-button>
+    <i-button class="z-font-13" ref="comA" disabled size="small">
+      <span slot="test">22</span>
+      <span>按钮2</span>
+    </i-button>
   </div>
 </template>
 

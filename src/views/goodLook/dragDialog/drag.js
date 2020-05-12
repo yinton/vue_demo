@@ -55,7 +55,7 @@ export default {
           left = maxDragDomLeft
         }
 
-        if (-(top) > minDragDomTop) {
+        if (-(top) > minDragDomTop) { 
           top = -minDragDomTop
         } else if (top > maxDragDomTop) {
           top = maxDragDomTop

@@ -7,7 +7,7 @@
       <i-form-item label="邮箱" prop="mail">
         <i-input v-model="formValidate.mail"></i-input>
       </i-form-item>
-    </i-form>
+    </i-form> 
   </div>
 </template>
 <script>
