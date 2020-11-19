@@ -30,6 +30,8 @@
     <div class="lll">1，对于导出方式（集中导出）：export 到需要使用 {}花括号，导出所有的方法变量，而export default 在只导出一个的情况下，可以不使用花括号，直接 export default A 即可</div>
     <div class="lll">2，对于引入使用方式：export 导出的都需要使用 {}花括号来接收所需要的方法名或变量名，而export default导出的，在引用时都只需定义一个变量接收即可</div>
     <div class="lll">3，对于导出时的别名，两者都可以取别名，但是，写法不一样</div>
+    <div class="lll">4，import ss,* as x from './D9.js' 这样子的语法，是在 该js文件中均有 export 和 export default的导出方式，在外面均是用一个变量来接受的情况注意，ss接收的是 export default的方式，必须写在第一的位置，否则报错</div>
+     <div class="lll">5，还有就是这样子的语法：import { A as hu} from './test' 内部 export {B,A} 也就是将A 重命名了</div>
     <div class="lk">
         <span class="spans">类 class 的操作 </span>
         
@@ -71,13 +73,15 @@
 </div> 
 </template>    
 <script>
-import * as AAS from './test' 
+// import * as AAS from './test' 
+import { A as hu} from './test' 
 import { Auth } from './auth'
 export default{
     mounted(){
       //  console.log(AAS.A())  
         const a = new Auth(10)
-       a.verify2()
+    //  
+    console.log('sadas大萨达',hu())
       //  console.log('user==',Auth.ADMIN)
       //  Auth.verifyToken(100)
     }

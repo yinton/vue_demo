@@ -24,10 +24,20 @@
 			<div class="z-padding-v-10px z-bg-80d z-bold z-margin-top-10px">总结3、getter和mutations中的方法可接受的第一个参数为 state中的所有数据，可以直接访问到里面的数据，mutations里面是可以接受两个参数，第一个就是state，存储了源数据，第二个即是需要传的参数；actions也是一样的，只不过第一个参数是一个对象集合，里面有commit，state等等，可以调用mutations里的方法以及获取state中的数据或者调用getter，是一个与 store 实例具有相同方法和属性的 context 对象</div>
 			<div class="testActions" @click="actions(1000)">点击测试action的参数，打印其不同的值</div>  
 			<div class="testActions" style="background:blue;" @click="actionsother(2000)">点击测试action第一个参数的其他情况</div> 
+		<div class="getter">
+			<span>vuex 中的 有的变量：resource</span>	
+			{{resource}}
+			<div class="getter-box">
+				<button @click.stop="$router.push('/vuexTxt')">转页面 查看修改状态</button>
+			</div>
+			<div class="getter-box">
+				<button @click.stop="subCommit">触发 commit</button>
+			</div>
+		</div>
 	</div>
-</template>
+</template> 
 <script>
-	import {mapGetters} from 'vuex'
+	import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 	export default {
 		data() {
 			return {
@@ -53,7 +63,13 @@
 			// ]),		  	
 			gettersProduc(){ 
 				return this.$store.getters.setProduc;  //与上面的一样的功能，上面直接拿到该方法
-			},		  	  	
+			},		
+			...mapState([
+			    "resource"  
+			]),
+			...mapGetters([
+			    "setResource"  
+			]),  	
 		},  
 		methods:{
 			reducePrice(){ //相当于是更改了源数据了 ，但不是最优方法； 本地的 而且严格模式会报错，不建议
@@ -68,19 +84,34 @@
 			actionsChange(){  
 				this.$store.dispatch('byActions');
 			},	
-	 	   actionsQuery(amount){  //传参数
+	 	    actionsQuery(amount){  //传参数
 				this.$store.dispatch('byActionsQuery',amount); // amount就是传过去的参数了
 			},	
 			actions(num) {
 				this.$store.dispatch('byActionstest',num); 
-			},	  	  
+			},	  	   
 			actionsother(num) {
 				this.$store.dispatch('byActionsother',num); 
-			}					
+			},
+			subCommit() {
+				//this.$store.commit('resourceCommit', 100); 
+				//this.resourceCommit(100)
+				//this.$store.dispatch('byActionsRes', 100);
+				this.byActionsRes()
+			}, 
+		     ...mapMutations([
+			   "resourceCommit"
+			]),  			
+			...mapActions([
+			   "byActionsRes"
+			]),  		
 		},
 		mounted(){
 			this.$store.state.productTxt = ['添加数据到vuex111','添加数据到vuex222','添加数据到vuex333'];
 			let a = 123;
+
+			let arr = [[12],['asdad'],[1231],[[12],[12],[[1267867]]]];
+			console.log('steing==', arr.toString());
 		}
 	}
 </script>
@@ -101,5 +132,19 @@
  .testActions { 
     background:red;
 		padding:10px;
+ }
+ .getter {
+	 width: 70%;
+	 height: 400px;
+	 padding: 20px;
+	 margin-top: 20px;
+	 background: rgba(0,0,0,.1)
+ }
+ button {
+	 width: 200px;
+	 height: 40px;
+	 background:red;
+	 margin-top: 10px;
+	 font-size: 16px
  }
 </style>

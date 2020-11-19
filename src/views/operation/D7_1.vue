@@ -3,7 +3,7 @@
    d7_1
     <slot name="icon" :obj="obj"></slot> 
     <slot></slot> 
-    <div>{{jdk}}</div> 
+    <div>{{jdk}}</div>  
 </div>
 </template>
 <script>

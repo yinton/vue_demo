@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{height:3000px; }#centerNum{width:300px;height:300px;line-height:100px;text-align: center;position: fixed;left:50%;top:50%;transform:translate(-50%, -50%);background-color: aquamarine; }
+    </style>
+</head>
+<body>
+    <div>Debounce 防抖</div>
+    <div>
+        防抖(debounce)概念：
+        所谓防抖，就是触发事件后在n秒内函数只能执行一次，如果n秒又触发了事件，则会重新计算函数时间。
+        防抖函数分为非立即执行版本和立即执行版本。
+    </div>	
+    <div>点击了按钮后，300毫秒他才执行，应是防抖中的非立即执行版本</div>
+    <button id="btn">debounce 按钮</button>
+    <div id="centerNum">
+
+    </div>
+    <script>
+        var num =0;
+        var canRun = true;
+        var canRun2 = true;
+        var tn = document.getElementById('btn');
+        var root = document.getElementsByTagName('body');     
+        var h = document.getElementById('centerNum');     
+
+        h.innerHTML = 0;  
+
+         // 点击按钮触发   防抖操作的一些写法 ： 因该是节流操作，因为在一定的时间触发一次
+        //1、 tn.addEventListener('click', function(e) {  
+        //     console.log('点击按钮')
+        //     if(!canRun2){
+        //         // 判断是否已空闲，如果在执行中，则直接return
+        //         return;
+        //     }
+
+        //     canRun2 = false;
+        //     setTimeout(function(){ 
+        //         console.log('asd',num)
+        //         num ++;    
+        //         h.innerHTML = num;     
+        //         canRun2 = true;
+        //     }, 800);  
+        // })
+
+         // 网页 滚动时不断触发的情况  因该是节流操作
+        // window.onscroll = function(){
+        //     console.log('触发了')
+
+        //     if(!canRun){
+        //         // 判断是否已空闲，如果在执行中，则直接return
+        //         return;
+        //     }
+
+        //     canRun = false;
+        //     setTimeout(function(){
+        //         h.innerHTML = num;     
+        //         num ++;    
+        //         canRun = true;
+        //     }, 300);
+        // }
+
+        //  防抖详解 ***
+        // 这里不断触发，会不断的更新触发时间，也就是，不断触发，他是不会触发的，和上面也不同，上面是不断触发时，他会在一定时间内触发一次，看代码就知道了
+        // 非立即执行版本
+        function debounce(func, wait) {
+            let timeout;
+            return function () {
+                let context = this;
+                //let args = arguments;//这两行看来是必要的
+
+                if (timeout) clearTimeout(timeout);
+                
+                timeout = setTimeout(() => {
+                    func.apply(context)
+                }, wait);
+            }
+        }
+
+        // 立即执行版本，函数触发后会立即执行
+        function debounce2(func,wait) {
+            let timeout;
+            return function () {
+                let context = this;
+                let args = arguments;
+
+                if (timeout) clearTimeout(timeout);
+
+                let callNow = !timeout;
+                timeout = setTimeout(() => {
+                    timeout = null;
+                }, wait)
+
+                if (callNow) func.apply(context, args)
+            }
+        }
+
+        // 上面两个的双剑合璧版本 其实双剑合并就是，可以控制他是 立即执行么还是不立即执行的啦
+        function debounce3(func,wait,immediate) {
+            let timeout;
+
+            return function () {
+                let context = this;
+                let args = arguments;
+
+                if (timeout) clearTimeout(timeout);
+                if (immediate) {
+                    var callNow = !timeout;
+                    timeout = setTimeout(() => {
+                        timeout = null;
+                    }, wait)
+                    if (callNow) func.apply(context, args)
+                }
+                else {
+                    timeout = setTimeout(function(){
+                        func.apply(context, args)
+                    }, wait);
+                }
+            }
+        }
+
+
+       /*
+            下面简单说下节流操作吧
+            所谓节流，就是指连续触发事件但是在 n 秒中只执行一次函数。节流会稀释函数的执行频率。
+            对于节流，一般有两种方式可以实现，分别是时间戳版和定时器版。
+            1、时间戳版  2、定时器版
+            
+       */
+
+        // 时间戳版：虽然会一直触发，但是 他是在一定的时间内（比如一秒）触发一次
+        function throttle(func, wait) {
+            let previous = 0;
+            return function() {
+                let now = Date.now(); // 当前的毫秒数
+                console.log('now',now)
+                let context = this;
+                let args = arguments;
+                if (now - previous > wait) {    // 比如在在一秒以后才会有用的
+                    func.apply(context, args);
+                    previous = now;
+                }
+            }
+        }
+
+        // 定时器版本
+        function throttle2(func, wait) {
+            let timeout;
+            return function() {              // 内部状态会被保存下来；timeout视为内部状态
+                let context = this;
+                let args = arguments;
+                console.log('timeout=',timeout)
+                if (!timeout) {
+                    timeout = setTimeout(() => {
+                        timeout = null;
+                        func.apply(context, args)
+                    }, wait)
+                }
+            }
+        }
+
+        /*
+            我们应该可以很容易的发现，其实时间戳版和定时器版的节流函数的区别就是，时间戳版的函数触发是在时间段内开始的时候，而定时器版的函数触发是在时间段内结束的时候。
+            也就是说，时间戳版是 立即执行的，函数版不是，所以可以合起来，让他既可以立即执行，也可以过后执行
+        */
+
+        // 双剑合璧版本
+        function throttle3(func, wait ,type = 1) {
+            let previous = 0;
+            let timeout;
+            return function() {
+                let context = this;
+                let args = arguments;
+                if(type===1){
+                    let now = Date.now();
+
+                    if (now - previous > wait) {
+                        func.apply(context, args);
+                        previous = now;
+                    }
+                }else if(type===2){
+                    if (!timeout) {
+                        timeout = setTimeout(() => {
+                            timeout = null;
+                            func.apply(context, args)
+                        }, wait)
+                    }
+                }
+            }
+        }
+
+        function count(){
+            num ++;    
+            h.innerHTML = num;   
+        }
+
+//         h.addEventListener('mousemove', function(e) { 
+//             console.log('防抖')
+//             debounce(count,1000);
+//          })
+        //  h.onmousemove = debounce3(count,1000,true);
+        h.onmousemove = throttle3(count,1000,1);
+
+
+    </script>
+</body>
+</html>

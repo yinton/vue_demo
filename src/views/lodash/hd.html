@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // function hd() {
+    //     let n = 1; 
+    //     return function(){
+    //         console.log(++n)
+    //     }
+    // } 
+    // let a = hd();  // 赋值给了一个变量，那么此变量是否就一直呢保存了其状态
+    // a()
+    // a()
+
+    function hd() {
+        let n = 1; 
+        return function(){
+            console.log(++n)
+            let m = 3;
+            return function() {
+                console.log(++m)
+                // console.log(++n)  若是调用 a()() 则会使得 n 也会 一直加 
+            }
+        }
+    } 
+   // let a = hd();  // 难道关键点在于 接受 函数的 变量 a 若是 hd()() 则这里会将 m 的累加值给打印，若是 hd（）就不会了。hd()保存的是 内部第一层的 return 的函数吧
+   let a = hd();
+    a()();
+    a()()
+   // a()()   
+   /*
+    若是    let a = hd();
+            a()();    
+            则 a 记录的是 hd内部第一层 的 return 的函数状态，因此 执行多次 a()() 会将 n++ 的值累加起来，而此时最内层的 m 则不会有变化，只会加一，不在上一次的基础加 1 
+    若是    let a = hd()();
+            a();    
+            则 a 记录的是 hd内部第二层 的 return 的函数状态，因此 执行多次 a()会将 m++ 的值累加起来，而此时第一层的 n 则不会有变化，只会加一，不在上一次的基础加 1            
+            
+   */
+
+      function hdx() {
+        let nx = 1; 
+        return function(){
+            return ++nx
+        }
+    } 
+    let ax = hdx();  // 赋值给了一个变量，那么此变量是否就一直呢保存了其状态
+    console.log('闭包返回数据',ax())
+    console.log('闭包返回数据',ax())
+
+    let arr = [1,3,4,5,7,8,12,23,123,121]
+    function between(a,b) {
+        return function(v) {
+            return v >= a && v <= b
+        }
+    }
+    console.log(arr.filter(between(2,9)))
+
+</script>
+</html>

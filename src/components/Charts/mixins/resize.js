@@ -1,7 +1,7 @@
 import { debounce } from '@/utils'
 
 export default {  
-  data() {
+  data() { 
     return { 
       $_sidebarElm: null
     }
@@ -16,6 +16,7 @@ export default {
 
     this.$_sidebarElm = document.getElementsByClassName('sidebar-container')[0]
     this.$_sidebarElm && this.$_sidebarElm.addEventListener('transitionend', this.$_sidebarResizeHandler)
+    console.log(22222222222222)
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.__resizeHandler)

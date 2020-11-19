@@ -31,7 +31,7 @@
 import { findComponentDownward } from '@/utils/assist.js';	
 import componentA from './als.vue' 
 import componentB from './alsx.vue' 
-export default {
+export default { 
 	name: 'componentC',
 	components:{
     componentA, 

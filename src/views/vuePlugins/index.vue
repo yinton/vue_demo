@@ -11,7 +11,7 @@
 </template>
 <script> 
 // import component1 from './D1.vue'; 
-// import component2 from './D2.vue'; 
+// import component2 from './D2.vue';  
 // import component3 from './D3.vue'; 
 import { component1, component2, component3, component4, component5, component6 } from './load'
 export default {

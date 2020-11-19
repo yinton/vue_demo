@@ -4,6 +4,9 @@
 		<div>
 			<div>上一级目录中添加的值</div>
 			<div v-for="(item,index) in childProducTxt" :key="index">{{item}}</div>
+		</div> 
+		<div>
+			{{resourcePro}} 
 		</div>
 	</div>
 </template>
@@ -23,6 +26,9 @@
 			},	
 			childProducTxt(){
 				return this.$store.state.productTxt; 
+			},	
+			resourcePro(){
+				return this.$store.state.resource; 
 			},		  	
 		}
 	}

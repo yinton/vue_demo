@@ -81,7 +81,14 @@ export default {
     context.strokeStyle = 'red';       //z这个样式 会覆盖之前的
     context.stroke();
 
-
+    context.beginPath();
+        context.lineWidth = 5;    
+    context.strokeStyle = '#005588';   
+    context.moveTo(20,20); 
+    context.quadraticCurveTo(20,100,200,10);  // 两次贝塞尔曲线
+     
+    context.closePath();
+   context.stroke();
   }
 }
 </script>

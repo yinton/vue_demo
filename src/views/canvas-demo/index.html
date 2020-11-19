@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>清除画板</title>
+    <style>
+    body {
+        text-align: center;
+    }
+
+    canvas {
+        background: lightblue
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        var oC = document.getElementById("canvas");
+        var dw = oC.getContext("2d");
+        dw.strokeStyle = "orange";
+        var oClear = document.getElementById("clear");
+        oClear.onclick = function() {
+            // 关闭路径， 再从新开始
+        	dw.closePath();
+        	dw.clearRect(0,0,oC.width,oC.height);
+        	dw.beginPath();
+        }
+        oC.onmousedown = function(ev) {
+            var ev = ev || window.event;
+            console.log('ev.clientX',ev.clientX);
+            console.log('oC.offsetLeft',oC.offsetLeft);
+            dw.moveTo(ev.clientX - oC.offsetLeft, ev.clientY - oC.offsetTop);
+            this.onmousemove = function(ev) {
+                console.log(12);
+                var ev = ev || window.event;
+                dw.lineTo(ev.clientX - oC.offsetLeft, ev.clientY - oC.offsetTop);
+                dw.stroke();
+            };
+            // 鼠标抬起
+            this.onmouseup=function(){
+            	this.onmousemove=null;
+            	this.onmouseup=null;
+            }
+        }
+
+    }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <p><a href="javascript:;" id="clear">清除画布</a></p>
+</body>
+
+</html>

@@ -266,6 +266,46 @@ export default new Router({
       path: '/vuePlugins',
       component: () => import('./views/vuePlugins/index.vue') 
     },
+    {
+      path: '/lodash',
+      component: () => import('./views/lodash/index.vue') 
+    },
+    {
+      path: '/apexchart',
+      component: () => import('./views/apexchart/index.vue') 
+    },
+    {
+      path: '/alert',
+      component: () => import('./views/alert/index.vue') 
+    },
+    {
+      path: '/axios',
+      component: () => import('./views/axios/index.vue') 
+    },
+    {
+      path: '/float',
+      component: () => import('./views/float/index.vue') 
+    },
+    {
+      path: '/sku',
+      component: () => import('./views/sku/index.vue') 
+    },
+    {
+      path: '/sourceCode',
+      component: () => import('./views/vueSourceCode/index.vue') 
+    },
+    {
+      path: '/arrayBuf',
+      component: () => import('./views/arrayBuf/index.vue') 
+    },
+    {
+      path: '/binding',
+      component: () => import('./views/binding/index.vue') 
+    },
+    {
+      path: '/canvasDemo',
+      component: () => import('./views/canvas-demo/index.vue') 
+    }
     // { path: '*', redirect: '/404', hidden: true }  // 即使在浏览器的路由输入框中，输入了错误的路由列表未注册的路由，就会跳转至 404 页面
   ]
 })

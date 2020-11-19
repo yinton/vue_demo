@@ -4,7 +4,7 @@
         <span>这是子：</span>
         <d6 :on-success="handleSuccess" />
         <div>接收子组件传回的值=：{{pro}}</div>
-    </div>
+    </div> 
 </template>
 <script>
 import d6 from './D6_1'

@@ -14,21 +14,25 @@ $emit 会在当前组件实例上触发自定义事件，并传递一些参数�
   <div>
   	<button class="z-padding-all-7px z-margin-top-10px" @click="handleClick">触发事件父 - 到 - 子</button>
   </div>
-  <div>
+  <div> 
   	<partx></partx>
   </div>  
+  <button class="z-padding-all-7px z-margin-top-10px" @click="handleA1">触发事件 最外层到 A3</button>
+  <a1 />
  </div>
 </template>
 <script>
 import part from './parts.vue'
 import partx from './partx.vue'
 import Emitter from './minis/emitter.js'
+import a1 from './A1.vue'
 export default {
 	name: 'componentA',
 	mixins: [ Emitter ],
 	components:{
 		part,
-		partx,
+    partx,
+    a1
 	},
 	data(){
 		return {
@@ -47,6 +51,9 @@ export default {
     },
     handleClick () {
       this.broadcast('componentB', 'on-message', this.data); //混入文件中的方法
+    },
+    handleA1(){
+      this.broadcast('a3', 'on-messagen', this.data); //混入文件中的方法
     }    	
 	}
 }

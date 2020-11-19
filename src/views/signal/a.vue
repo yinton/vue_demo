@@ -1,6 +1,7 @@
 <template>
   <div class="z-padding-all-10px">
      <div>aaaaaaa</div>
+     <!-- <div>可以使用 -- {{injections.app}}</div> 可以这种调用吧 --> 
   </div>
 </template>
 
@@ -12,6 +13,11 @@ export default {
     } 
    },  //比父组件还早输出这些
   inject: ['app','name','minis'], //与上级组件的provide连用；  'app','name'与之对应
+  // inject: {
+  //   app: {
+  //     default: () => ({})
+  //   }
+  // },
   mounted () {
     console.log(this.app);  // Aresn
     console.log('上面直接传值下面是this的获取');

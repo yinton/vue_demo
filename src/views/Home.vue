@@ -14,7 +14,7 @@
       组件通信派发与广播 （事件相关触发）相当于可以调用孙组件或者更下层的组件中的方法函数
     </div>   
     <div class="z-width-20-percent z-bg-80d box" @click="$router.push('/findComponents')">
-      组件通信之找到任意组件实例 （非事件相关即可触发）
+      组件通信之找到任意组件实例 （非事件相关即可触发）工具函数中还包含了一个深度拷贝方法
     </div>  
     <div class="z-width-20-percent z-bg-ff9 box" @click="$router.push('/form')">
       实战，数据验证功能的表单
@@ -111,6 +111,36 @@
     <div class="z-width-20-percent z-bg-80d box" @click="$router.push({path:'/vuePlugins'})">    
        vue 一众插件演示
     </div>
+    <div class="z-width-20-percent z-bg-ff9 box" @click="$router.push({path:'/lodash'})">    
+       lodash 演示，以及防抖节流 以及闭包的理解感悟
+    </div>
+    <div class="z-width-20-percent z-bg-fd4 box" @click="$router.push({path:'/apexchart'})">    
+        apexcharts 图标库
+    </div>
+    <div class="z-width-20-percent z-bg-ff8 box" @click="$router.push({path:'/alert'})">    
+        全局提示组件 $Alert
+    </div>
+    <div class="z-width-20-percent z-bg-b3b box" @click="$router.push({path:'/axios'})">    
+        axios 库的简单封装 \ 附 HTTP 讲解
+    </div>
+    <div class="z-width-20-percent z-bg-b3b box" @click="$router.push({path:'/float'})">    
+        float 布局
+    </div>
+    <div class="z-width-20-percent z-bg-80d box" @click="$router.push({path:'/sku'})">    
+        sku （商品多规格选择算法）
+    </div>
+    <div class="z-width-20-percent z-bg-ff9 box" @click="$router.push({path:'/sourceCode'})">    
+        vue 源码 初探
+    </div>    
+    <div class="z-width-20-percent z-bg-fd4 box" @click="$router.push({path:'/arrayBuf'})">    
+        掘金 -- 数组奇巧淫技
+    </div>    
+    <div class="z-width-20-percent z-bg-ff8 box" @click="$router.push({path:'/binding'})">     
+        简单总结下，改变单项数据流的方式 1、 .sync修饰符  2、Vue.set 3、v-model也算  4、动态组件  5、封装的 input组件配合 computed  
+    </div>    
+        <div class="z-width-20-percent z-bg-ff8 box" @click="$router.push({path:'/canvasDemo'})">     
+         一些小的vue案例总结：watch监听写法 "a.b"(){}，冻结data数据不响应\函数组件临时变量
+    </div>  
   </div>
   <div>{{fullName}}</div>       
   <div @click="changes" class="z-margin-left-20px">点击改变computed 中的fullName</div>  

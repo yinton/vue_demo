@@ -171,7 +171,7 @@ export function export_json_to_excel({
     merges.forEach(item => {
       ws['!merges'].push(XLSX.utils.decode_range(item))
     })
-  }
+  } 
 
   if (autoWidth) {
     /*设置worksheet每列的最大宽度*/

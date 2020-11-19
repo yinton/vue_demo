@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-    props: {
+    props: {           // 注意，若是要设定默认值的话，在外层的 v-model 上面绑定的属性，赋予一个值，应该是会自动传到 此处的 props 的 value 这里
         value: {
             type: String,
             default: ''

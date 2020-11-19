@@ -104,6 +104,7 @@ export default{
         handleDownload() {
             this.downloadLoading = true
             import('@/vendor/Export2Excel').then(excel => {
+                console.log('引入了阿啥的客户方'+excel);
                 const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']    // 这是生成的 excel 的字段 和下面的字段一一对应
                 const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time','timestamp']  // 这是数组中的原始子段，可以在导出时定义为新的字段，如上
                 const list = this.list

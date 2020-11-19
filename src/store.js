@@ -10,7 +10,11 @@ export default new Vuex.Store({
       {name:'vuex中的值222',price:100000},
       {name:'vuex中的值333',price:50000},
     ],
-    productTxt:[]
+    productTxt:[],
+    resource: [
+      {user: 'yt', id: 123},
+      {user: 'yt2', id: 321}
+    ]
   },
   getters:{ 
     //用于获取state中的数据 获取属性状态 //并且改变state中的数据 ;当然了也可在组件中自己改
@@ -25,7 +29,7 @@ export default new Vuex.Store({
          }
       })
       return setProduc      
-    }
+    },
   },  
   mutations: {
     reduce: (state) =>{   //action中的方法传来的参数 //state 存储的是 state 里的所有数据 下面的state即时所存参数
@@ -44,6 +48,12 @@ export default new Vuex.Store({
          item.price -= payload;
        }) 
     }, 
+    resourceCommit: (state, query) =>{  
+       console.log('query', query);      
+       state.resource.forEach(item =>{ 
+         item.id -= 100;
+       }) 
+    },  
   },
   actions: {
     byActions: (context) =>{ 
@@ -69,6 +79,9 @@ export default new Vuex.Store({
     byActionsother: ({ commit },payload) =>{   //只把 commit 引入使用
       console.log(payload);
       commit('reduce');    //可以调用 mutations 中的方法
-    },   
+    },  
+    byActionsRes: ({ commit },payload) =>{   //只把 commit 引入使用
+      commit('resourceCommit', payload);    //可以调用 mutations 中的方法
+    },  
   }
 })

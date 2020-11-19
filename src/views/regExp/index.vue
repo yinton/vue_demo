@@ -73,7 +73,7 @@
     <div>
       <div>const str = "555aa4213aa9844aa523199328aa7213";</div> 
       <p>let reg = /aa/ig;</p> 
-      <p>console.log(str.replace(reg,"")); 结果：555421398445231993287213 a被替换为了空</p> 
+      <p>console.log(str.replace(reg,"")); 结果：555421398445231993287213 aa被替换为了空</p> 
     </div>
     <div class="z-bold z-padding-v-10px">例子（4）：过滤字符串中的小写字母</div>
     <div>
@@ -82,6 +82,53 @@
       <p>console.log(str.replace(reg,"")); 结果为：A42123G4754864不耐烦阿瑟东32； 这里如果匹配模式 加上 i全局匹配，那么大写也会被找到替换，也可以更改 [a-z]为[A-z]意为查找大写和小写</p> 
     </div>
     <div class="z-bold z-padding-v-10px">正则表达式的方括号，用于查找某个范围内的字符：</div>
+    <pre style="font-size:20px;">
+      表达式    描述 
+      [abc]       查找方括号之间的任何字符 
+      [^abc]     查找任何不在方括号之间的字符
+      [0-9]       查找任何从0-9的数字
+      [a-z]       查找任何从小写 a 到 小写 z 的字符
+      [A-Z]      查找任何从大写 A 到 大写 Z 的字符
+      [adgk]    查找给定集合内的任何字符
+      [^adgk]  查找给定集合外的任何字符
+      (red|blue|green)     查找任何指定的选项
+
+      元字符     具有特殊含义的字符
+      .               查找单个字符，除了换行和行结束符
+      \w            查找单词字符，包括英文字母，数字，下划线
+      \W           查找非单词字符，包括非英文字母，数字，下划线之外的字符
+      \d            查找数字
+      \D           查找非数字字符
+      \s           查找空白字符
+      \S           查找非空白字符
+      \b           匹配单词边界
+      \B           匹配非单词边界
+      \0           查找 NULL 字符
+      \n           查找换行符
+      \f           查找换页符 
+      \r           查找回车符
+      \t           查找制表符
+      \v           查找垂直制表符
+      \xxx         查找以八进制 xxx 规定的字符
+      \xdd         查找以十六进制 dd 规定的字符
+      \uxxxx       查找以十六进制数 xxxx 规定的 Unicode 字符
+
+      量词：         描述
+      n+            匹配任何包含至少一个 n 的字符串
+      n*            匹配任何包含零个或多个 n 的字符串
+      n?            匹配任何包含零个或一个 n 的字符串  
+      n{x}          匹配 包含 x 个 n 的序列的字符串  
+      n{X,Y}        匹配 包含 x 或 y 个 n 的序列的字符串 
+      n{X,}         匹配 包含 至少 x 个 n 的序列的字符串 
+      n$            匹配 任何 结尾为 n 的字符串 
+      ^n            匹配 任何 开头为 n 的字符串 
+      ?=n           匹配 任何 紧随其后接指定字符串 n 的字符串 
+      ?!n           匹配 任何 其后没有紧接指定字符串 n 的字符串 
+
+
+
+
+    </pre>
  </div>
 </template>
 <script>
@@ -135,6 +182,15 @@ export default {
      const str = "good god goood gd gogogod";
      let reg = /(go)+d/g;
      console.log(str.match(reg));
+
+     const str2 = "555aaaq4213aa9844aa523199328aa7213";
+      let regx = /(5a|a7)/ig;
+
+      console.log(str2.replace(regx,"vvv")); 
+
+      let str10 = "1.第 2x 章 2.第 2 章";
+      let reg10 = /^\d/gm;
+      console.log('qwe', str10.replace(reg10, '#'))
 	}
 }
 </script> 

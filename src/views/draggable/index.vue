@@ -5,11 +5,14 @@
         @end="handleMoveEnd"
         @start="handleMoveStart"
         :move="handleMove"
-      >
+         :options="{animation:300,group:'people', scroll:true,scrollSpeed:2000,scrollSensitivity:10}"
+      > 
+      <transition-group tag="div" name="list" class="list-main">
         <li class="li-box" v-for="(item,index) in listdata" :key="index">{{item.name}}</li>
+      </transition-group>
       </draggable>
       <!-- 展示list数据效果 -->
-      <div class="data-show">{{listdata}}</div>
+      <div class="data-show">data:=={{listdata}}</div>
       <input type="text" v-model="wrd" style="height:30px;border:1px solid #ccc;margin:10px 0;"> 
       <childrens :word.sync="wrd" />
       <div style="padding:10px 0;font-size:20px;">父组件传值时  :word.sync="wrd"  子组件抛出方法时的写法：this.$emit('update:word', newValue)，此时 newValue的那个值就自动双向绑定到了 word 类似于抛出input事件</div>
@@ -45,23 +48,23 @@ export default {
       listdata:[
         {
           id: 1,
-          name: '叶落森1'
+          name: '叶1落森1'
         },
         {
           id: 2,
-          name: '叶落森2'
+          name: '叶2落森2'
         },
         {
           id: 3,
-          name: '叶落森3'
+          name: '叶3落森3'
         },
         {
           id: 4,
-          name: '叶落森4'
+          name: '叶4落森4'
         },
         {
           id: 5,
-          name: '叶落森5'
+          name: '叶5落森5'
         }
       ]
     }
@@ -73,23 +76,62 @@ export default {
     handleMoveStart ({oldIndex}) {
       console.log('start', oldIndex, this.basicComponents)
     },
-    handleMove () {
-      console.log('move')
-      return true
+    handleMove (q,p) {
+       console.log('move1',q.draggedContext.index);
+       console.log('move1',q.relatedContext.index);
+       //this.listdata.splice(0,0,{name:'asd',id:12})
     },
   }
 }
 </script>
+<style>
+  /* // 列表动画 */
+  .list-enter-active {
+    transition: all .5s;
+  }
+
+  .list-leave-active {
+    transition: all .3s;
+  }
+
+  .list-enter,
+  .list-leave-to
+  /* .list-leave-active for below version 2.1.8 */
+    {
+      opacity  : 0;
+      transform: translateX(-100px);
+    }
+
+  .list-enter { 
+    height: 30px;
+  }
+</style>
 <style scoped>
 .li-box{
   padding:10px 0;
   background-color:#00cccc;
+  margin: 10px 0;
 }
 div .li-box:nth-child(1){
    background: red;
+}
+div .li-box:nth-child(2){
+   background: blue;
 }
 .data-show{
   background: pink;
   padding:20px 0;
 }
+
+
+.list-main {
+    min-height : 60px;
+    position: relative;
+    border: 1px #ccc dashed;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: nowrap;
+  }
+
+
 </style>
